@@ -4,7 +4,7 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'DatasourceApp',
   connector: 'mongodb',
-  url: 'mongodb+srv://prog_web:123@clusterprogweb.mzuza.mongodb.net/Inmobiliaria?retryWrites=true&w=majority',
+  url: 'mongodb+srv://adminDeveloper:123G5@appprojectclusterg5.sc9fw.mongodb.net/Inmobiliaria?retryWrites=true&w=majority',
   host: '',
   port: 0,
   user: '',
