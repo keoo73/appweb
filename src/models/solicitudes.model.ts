@@ -45,6 +45,10 @@ export class Solicitudes extends Entity {
   })
   contratoCargado: string;
 
+  @property({
+    type: 'string',
+  })
+  personasId?: string;
 
   constructor(data?: Partial<Solicitudes>) {
     super(data);
