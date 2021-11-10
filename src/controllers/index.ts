@@ -5,3 +5,6 @@ export * from './personas-vehiculos.controller';
 export * from './vehiculos-solicitudes.controller';
 export * from './solicitudes-vehiculos.controller';
 export * from './vehiculos-personas.controller';
+export * from './persona.controller';
+export * from './solicitud.controller';
+export * from './vehiculo.controller';
