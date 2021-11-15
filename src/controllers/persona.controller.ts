@@ -7,13 +7,13 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
@@ -23,7 +23,7 @@ import {PersonasRepository} from '../repositories';
 export class PersonaController {
   constructor(
     @repository(PersonasRepository)
-    public personasRepository : PersonasRepository,
+    public personasRepository: PersonasRepository,
   ) {}
 
   @post('/personas')
@@ -52,9 +52,7 @@ export class PersonaController {
     description: 'Personas model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Personas) where?: Where<Personas>,
-  ): Promise<Count> {
+  async count(@param.where(Personas) where?: Where<Personas>): Promise<Count> {
     return this.personasRepository.count(where);
   }
 
@@ -106,7 +104,8 @@ export class PersonaController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Personas, {exclude: 'where'}) filter?: FilterExcludingWhere<Personas>
+    @param.filter(Personas, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Personas>,
   ): Promise<Personas> {
     return this.personasRepository.findById(id, filter);
   }
