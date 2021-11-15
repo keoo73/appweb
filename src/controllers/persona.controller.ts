@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -19,11 +20,17 @@ import {
 } from '@loopback/rest';
 import {Personas} from '../models';
 import {PersonasRepository} from '../repositories';
+import {AutenticacionService} from '../services';
+
+const fetch = require('node-fetch');
 
 export class PersonaController {
   constructor(
     @repository(PersonasRepository)
     public personasRepository: PersonasRepository,
+    //importando servicio de autenticacion
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService,
   ) {}
 
   @post('/personas')
@@ -44,7 +51,26 @@ export class PersonaController {
     })
     personas: Omit<Personas, 'id'>,
   ): Promise<Personas> {
-    return this.personasRepository.create(personas);
+    const contrasenia = this.servicioAutenticacion.generarContrasenia();
+    const contraseniaCifrada =
+      this.servicioAutenticacion.cifrarContrasenia(contrasenia);
+    personas.contrasenia = contraseniaCifrada;
+
+    //return this.personasRepository.create(personas);
+    const p = await this.personasRepository.create(personas);
+
+    //Notificacion al usuario
+    const destino = personas.correoElectronico;
+    const asunto = 'Registro en la app Pedidos';
+    const contenido = `Hola, ${personas.nombres}, su nombre de usuario es: ${personas.correoElectronico} y la contraseña para el acceso a la app es: ${personas.contrasenia}`;
+
+    fetch(
+      `http://127.0.0.1:5000/envio-correo?correo_destino = ${destino}&asunto = ${asunto}&contenido = ${contenido}`,
+    ).then((data: any) => {
+      console.log(data);
+    });
+
+    return p;
   }
 
   @get('/personas/count')
