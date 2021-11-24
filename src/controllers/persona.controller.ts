@@ -12,6 +12,8 @@ import {
   get,
   getModelSchemaRef,
   HttpErrors,
+  param,
+  patch,
   post,
   put,
   requestBody,
