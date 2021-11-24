@@ -24,7 +24,7 @@ export class EstrategiaAdministrador implements AuthenticationStrategy {
         if (datos.data.rol) {
           //Aquí se podría tener en cuenta el
           const perfil: UserProfile = Object.assign({
-            nombre: datos.data.nombre,
+            nombre: datos.data.nombres,
           });
           return perfil;
         }
