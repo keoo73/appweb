@@ -17,6 +17,7 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {Llaves} from '../config/Llaves';
 import {Credenciales, Personas} from '../models';
 import {PersonasRepository} from '../repositories';
 import {AutenticacionService} from '../services';
@@ -91,7 +92,7 @@ export class PersonaController {
     const contenido = `Hola, ${personas.nombres}, su nombre de usuario es: ${personas.correoElectronico} y la contraseña para el acceso a la app es: ${personas.contrasenia}`;
 
     fetch(
-      `http://127.0.0.1:5000/envio-correo?correo_destino = ${destino}&asunto = ${asunto}&contenido = ${contenido}`,
+      `${Llaves.urlServiceNotificaciones}/envio-correo?correo_destino = ${destino}&asunto = ${asunto}&contenido = ${contenido}`,
     ).then((data: any) => {
       console.log(data);
     });
