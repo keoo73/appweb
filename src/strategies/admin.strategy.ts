@@ -21,11 +21,10 @@ export class EstrategiaAdministrador implements AuthenticationStrategy {
     if (token) {
       const datos = this.servicioAutenticacion.validarTokenJWT(token);
       if (datos) {
-        if (datos.data) {
+        if (datos.data.rol) {
           //Aquí se podría tener en cuenta el
           const perfil: UserProfile = Object.assign({
             nombre: datos.data.nombre,
-            rol: datos.data.rol,
           });
           return perfil;
         }
