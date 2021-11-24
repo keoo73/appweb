@@ -11,14 +11,13 @@ import {
   del,
   get,
   getModelSchemaRef,
-  param,
-  patch,
+  HttpErrors,
   post,
   put,
   requestBody,
   response,
 } from '@loopback/rest';
-import {Personas} from '../models';
+import {Credenciales, Personas} from '../models';
 import {PersonasRepository} from '../repositories';
 import {AutenticacionService} from '../services';
 
@@ -32,6 +31,33 @@ export class PersonaController {
     @service(AutenticacionService)
     public servicioAutenticacion: AutenticacionService,
   ) {}
+
+  @post('/identificarPersona', {
+    responses: {
+      '200': {
+        description: 'Identificacion de usuarios',
+      },
+    },
+  })
+  async identificarPersona(@requestBody() credenciales: Credenciales) {
+    const p = await this.servicioAutenticacion.identificarPersona(
+      credenciales.usuario,
+      credenciales.contrasenia,
+    );
+    if (p) {
+      const token = this.servicioAutenticacion.generarTokenJWT(p);
+      return {
+        datos: {
+          nombre: p.nombres,
+          correo: p.correoElectronico,
+          id: p.id,
+        },
+        tk: token,
+      };
+    } else {
+      throw new HttpErrors[401]('Datos Inválidos');
+    }
+  }
 
   @post('/personas')
   @response(200, {

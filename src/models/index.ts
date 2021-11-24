@@ -3,3 +3,4 @@ export * from './vehiculos.model';
 export * from './solicitudes.model';
 export * from './invitacion.model';
 export * from './contrato.model';
+export * from './credenciales.model';
