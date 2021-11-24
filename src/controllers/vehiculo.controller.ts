@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -7,23 +8,24 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
 import {Vehiculos} from '../models';
 import {VehiculosRepository} from '../repositories';
 
+@authenticate('admin')
 export class VehiculoController {
   constructor(
     @repository(VehiculosRepository)
-    public vehiculosRepository : VehiculosRepository,
+    public vehiculosRepository: VehiculosRepository,
   ) {}
 
   @post('/vehiculos')
@@ -47,6 +49,7 @@ export class VehiculoController {
     return this.vehiculosRepository.create(vehiculos);
   }
 
+  @authenticate.skip()
   @get('/vehiculos/count')
   @response(200, {
     description: 'Vehiculos model count',
@@ -106,7 +109,8 @@ export class VehiculoController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Vehiculos, {exclude: 'where'}) filter?: FilterExcludingWhere<Vehiculos>
+    @param.filter(Vehiculos, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Vehiculos>,
   ): Promise<Vehiculos> {
     return this.vehiculosRepository.findById(id, filter);
   }
