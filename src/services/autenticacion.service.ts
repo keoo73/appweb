@@ -58,6 +58,7 @@ export class AutenticacionService {
           id: persona.id,
           correo: persona.correoElectronico,
           nombre: persona.nombres + ' ' + persona.apellidos,
+          rol: persona.rol,
         },
       },
       Llaves.claveJWT,

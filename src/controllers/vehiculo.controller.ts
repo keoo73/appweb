@@ -21,13 +21,14 @@ import {
 import {Vehiculos} from '../models';
 import {VehiculosRepository} from '../repositories';
 
-@authenticate('admin')
 export class VehiculoController {
   constructor(
     @repository(VehiculosRepository)
     public vehiculosRepository: VehiculosRepository,
   ) {}
 
+  @authenticate('asesor')
+  @authenticate('admin')
   @post('/vehiculos')
   @response(200, {
     description: 'Vehiculos model instance',
@@ -61,6 +62,7 @@ export class VehiculoController {
     return this.vehiculosRepository.count(where);
   }
 
+  @authenticate('asesor')
   @get('/vehiculos')
   @response(200, {
     description: 'Array of Vehiculos model instances',
@@ -133,6 +135,7 @@ export class VehiculoController {
     await this.vehiculosRepository.updateById(id, vehiculos);
   }
 
+  @authenticate('asesor')
   @put('/vehiculos/{id}')
   @response(204, {
     description: 'Vehiculos PUT success',
@@ -144,6 +147,7 @@ export class VehiculoController {
     await this.vehiculosRepository.replaceById(id, vehiculos);
   }
 
+  @authenticate('asesor')
   @del('/vehiculos/{id}')
   @response(204, {
     description: 'Vehiculos DELETE success',
