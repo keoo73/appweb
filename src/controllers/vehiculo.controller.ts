@@ -1,4 +1,4 @@
-import {authenticate} from '@loopback/authentication';
+//import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -27,8 +27,8 @@ export class VehiculoController {
     public vehiculosRepository: VehiculosRepository,
   ) {}
 
-  @authenticate('asesor')
-  @authenticate('admin')
+  //@authenticate('asesor')
+  //@authenticate('admin')
   @post('/vehiculos')
   @response(200, {
     description: 'Vehiculos model instance',
@@ -50,7 +50,7 @@ export class VehiculoController {
     return this.vehiculosRepository.create(vehiculos);
   }
 
-  @authenticate.skip()
+  //@authenticate.skip()
   @get('/vehiculos/count')
   @response(200, {
     description: 'Vehiculos model count',
@@ -62,7 +62,7 @@ export class VehiculoController {
     return this.vehiculosRepository.count(where);
   }
 
-  @authenticate('asesor')
+  //@authenticate('asesor')
   @get('/vehiculos')
   @response(200, {
     description: 'Array of Vehiculos model instances',
@@ -135,7 +135,7 @@ export class VehiculoController {
     await this.vehiculosRepository.updateById(id, vehiculos);
   }
 
-  @authenticate('asesor')
+  //@authenticate('asesor')
   @put('/vehiculos/{id}')
   @response(204, {
     description: 'Vehiculos PUT success',
@@ -147,7 +147,7 @@ export class VehiculoController {
     await this.vehiculosRepository.replaceById(id, vehiculos);
   }
 
-  @authenticate('asesor')
+  //@authenticate('asesor')
   @del('/vehiculos/{id}')
   @response(204, {
     description: 'Vehiculos DELETE success',
