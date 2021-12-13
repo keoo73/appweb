@@ -1,0 +1,125 @@
+.containerFooter{
+    position:relative;
+    width: 100%;
+    background-color: rgb(40, 40, 40);
+    color: var(--color-gris-principal);
+    height: 300px;
+    bottom: 0;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerlineaHeader{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.lineaHeader{
+    background: rgb(186, 31, 31);
+    height: .09px;
+    width: 80%;
+}
+.containerLogoFooter{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logoFooter{
+    position: relative;
+    width: 100px;
+    top: -45px;
+}
+.footerInformacion{
+    margin-bottom: 60px;
+    padding: 50px; 
+    line-height: 18px;
+    font-size: 9px;
+}
+.footerInformacion li h1{
+    margin-bottom: 10px; 
+}
+.footerInformacion li a{
+    color: var(--color-gris-principal);
+    display: block;
+}
+.footerInformacion li a:hover{
+    color: white;
+}
+
+.containerEmailInput{
+    position: relative;
+    top: -35px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.containerInput{
+    position: relative;
+}
+.input{
+    position: relative;
+    *background-color: tomato;
+    width: 190px;
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 25px;
+    box-shadow: var(--box-shadow-inputs);
+    border-bottom: var(--border-bottom-inputs);
+    border-right: var(--border-right-inputs);
+}
+.btnEnvirFooter{
+    position: absolute;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 6px;
+    margin: .2rem .4rem;
+    right: 0;
+}
+.final{
+    background-color: rgb(46, 46, 46);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.textoFinal {
+    font-size: .7rem;
+    
+    width: 50%;
+    padding: 10px;
+}
+.final a{
+    color: rgb(221, 221, 221);
+    margin: 15px;
+}
+.final a:hover,
+.redesSociales a:hover{
+    color: rgb(255, 255, 255);
+}
+.redesSociales{
+    width: 50%;
+    margin-right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: right;
+}
+.redesSociales a{
+    margin: 10px;
+    color: rgb(221, 221, 221);
+    font-size: 18px;
+}
+
+@media (max-width: 991px){
+    .containerFooter{
+        *flex-direction: column;
+    }
+}
